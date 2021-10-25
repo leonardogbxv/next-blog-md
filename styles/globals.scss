@@ -1,0 +1,62 @@
+$primary-color: #FAF8FF;
+// $secondary-color: #8685EF;
+$secondary-color: #FF4B4B;
+$bg-color: #333333;
+$holder-color: #4A4857;
+
+* {
+  font-family: 'Ubuntu', Roboto, Helvetica, Segoe UI, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #eceff1;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color .15s ease-out;
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
+.container {
+  max-width: 48rem;
+  margin: 0 auto 0 auto;
+  padding: 3rem;
+  vertical-align: middle;
+  background-color: #f8f9fa;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.15);
+  overflow: auto;
+}
+
+.btn-default {
+  border-style: none;
+  background-color: #d4d6d8;
+  color: $bg-color;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-right: 20px;
+  padding: 10px 40px;
+  font-size: 16px;
+
+  &:hover {
+    color: $primary-color;
+    background-color: $secondary-color;
+    transition: background-color 0.2s ease-out;
+    cursor: pointer;
+  }
+}
+
+.full-width-inside-container {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}

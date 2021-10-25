@@ -1,0 +1,17 @@
+$primary-color: #FAF8FF;
+// $secondary-color: #8685EF;
+$secondary-color: #FF4B4B;
+$bg-color: #333333;
+$holder-color: #4A4857;
+
+.footer {
+  background-color: #333;
+  color: $primary-color;
+  padding: 3rem 0;
+  margin-top:auto;
+  text-align: center;
+
+  a {
+    color: $secondary-color;
+  }
+}

@@ -1,0 +1,51 @@
+$primary-color: #FAF8FF;
+// $secondary-color: #8685EF;
+$secondary-color: rgba(255,255,255,.5);
+$highlight-color: #FF4B4B;
+$bg-color: #333333;
+$holder-color: #4A4857;
+
+.header {
+  background-color: #333;
+  color: $primary-color;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.header {
+  h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    cursor: pointer;
+    margin: 0;
+    transition: color .2s ease-out;
+
+    &:hover {
+      color: $highlight-color;
+    }
+
+    strong {
+      color: $highlight-color;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 0 0;
+    
+
+    a {
+      text-decoration: none;
+      padding: .5rem 1rem;
+    }
+  }
+}
+
+.subtitle {
+  color: $secondary-color;
+}
