@@ -25,6 +25,14 @@ export default function Header() {
           </Link>
 
           <a href="https://github.com/leonardogbxv" target="_blank">Github</a>
+
+          <Link href="/admin/new-post">
+            <a className={styles['new-post']}>New Post</a>
+          </Link>
+
+          <Link href="/admin">
+            <a className={styles['new-post']}>Administration</a>
+          </Link>
         </nav>
       </header>
     </>
