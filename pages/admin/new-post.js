@@ -1,42 +1,47 @@
-import { useState } from "react"
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { convertToBase64 } from '../../utils/convertToBase64'
 import axios from 'axios'
-import Link from "next/link"
+import moment from 'moment'
+import Link from 'next/link'
 import styles from '../../styles/Form.module.scss'
 
 export default function NewPost() {
+  // Form states
+  const [formSubmitted, setFormSubmitted] = useState(false)
   const [formData, setFormData] = useState({
+    date: moment().format('DD MMM YYYY').toUpperCase(),
+    category: 'programming',
     image: '',
     title: '',
-    category: 'programming',
     description: '',
     markdown: ''
   })
 
-  const [image, setImage] = useState("")
+  // Image field states
+  const [previewImage, setPreviewImage] = useState("")
   const [typeFile, setTypeFile] = useState("")
   const [isUploaded, setIsUploaded] = useState(false)
 
-  const handleImageUpload = async event => {
-    const inputFile = event.target.files[0]
+  // Redirects after form submit
+  const router = useRouter()
+  useEffect(() => {
+    console.log('formSubmitted', formSubmitted)
+    if(formSubmitted) {
+      router.push('/')
+    }
+  }, [formSubmitted])
+
+  // Handles
+  const handleSubmit = async event => {
+    event.preventDefault()
     
     try {
-      const base64 = await convertToBase64(inputFile)
-
-      setImage(base64)
-      setTypeFile(event.target.files[0].type)
-      setIsUploaded(true)
-    } catch (err) {
-      setIsUploaded(false)
-    } finally {
-      const newFormData = { ...formData }
-      newFormData[event.target.name] = {
-        fakePath: event.target.value,
-        base64: image,
-        type: typeFile
-      }
-
-      setFormData(newFormData)
+      const promise = await axios.post('http://localhost:3000/api/create-post-file', formData)
+      promise.status !== 200 || setFormSubmitted(true)
+    } catch (error) {
+      alert(error)
+      setFormSubmitted(false)
     }
   }
 
@@ -48,16 +53,28 @@ export default function NewPost() {
     console.log(formData)
   }
 
-  const handleSubmit = event => {
-    event.preventDefault()
+  const handleImagePreview = async event => {
+    const inputFile = event.target.files[0]
+    
+    try {
+      const base64 = await convertToBase64(inputFile)
 
-    axios.post('http://localhost:3000/api/create-post-file', formData)
-    .then(res => {
-      console.log(res)
-    });
-        
+      setPreviewImage(base64)
+      setTypeFile(event.target.files[0].type)
+      setIsUploaded(true)
+    } catch (err) {
+      setIsUploaded(false)
+    } finally {
+      const newFormData = { ...formData }
+      newFormData[event.target.name] = {
+        fakePath: event.target.value,
+        base64: previewImage,
+        type: typeFile,
+        file: inputFile
+      }
 
-    console.log(formData)
+      setFormData(newFormData)
+    }
   }
 
   return (
@@ -67,10 +84,10 @@ export default function NewPost() {
             
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles['image-input']}>
-            { isUploaded ? <img src={image} alt="" /> : <h3>Preview</h3>}
+            { isUploaded ? <img src={previewImage} alt="" /> : <h3>Preview</h3>}
             <label htmlFor="file">Image</label>
             <input 
-              onChange={handleImageUpload} 
+              onChange={handleImagePreview} 
               type="file" 
               name="image"
             />
@@ -101,7 +118,7 @@ export default function NewPost() {
             <textarea onChange={handleChange} name="markdown" ></textarea>
           </div>
 
-          <button onSubmit={handleSubmit} type="submit" className="btn-default">Submit</button>
+          <button type="submit" className="btn-default">Submit</button>
           <Link href="/">
             <button className="btn-default">Cancel</button>
           </Link>
