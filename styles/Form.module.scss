@@ -1,0 +1,94 @@
+.form {
+  font-weight: 200;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0 8px 0;
+    
+    input,
+    textarea,
+    select {
+      padding: 8px;
+      margin: 12px 0 12px 0;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+
+      &:focus {
+        outline-style: auto;
+        outline-color: #ff4b4bb4;
+      }
+
+      &[type="file"] {
+        background-color: white;
+        cursor: pointer;
+        height: 100px;
+        color: transparent;
+      }
+
+      &[type="file"]::-webkit-file-upload-button {
+        display: none;
+      }
+
+      &[type="file"]::before {
+        content: 'Upload file/image';
+        background-color: #eceff1;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        color: rgba(51, 51, 51, 0.5);
+        padding: 37px;
+        outline: none;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        width: fit-content;
+        min-width: 66%;
+      }
+
+      &[type="file"]:hover:before {
+        cursor: pointer;
+        transition: background-color 0.2s ease-out;
+        background-color: #ced4da;
+        color: white;
+        font-weight: 500;
+      }
+    }
+
+    textarea {
+      height: 20vh;
+    }
+    
+    select {
+      cursor: pointer;
+    }
+  }
+}
+
+.image-input {
+  position: relative;
+
+  img,
+  h3 {
+    cursor: default;
+    position: absolute;
+    bottom: 21px;
+    right: 8px;
+    width: 170px;
+    height: 98px;
+    border-radius: .25rem;
+    border: 1px solid #ced4da;
+  }
+
+  h3 {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 0.5);
+  }
+}
