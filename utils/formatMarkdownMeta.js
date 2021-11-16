@@ -4,7 +4,7 @@ title: '${markdown.title}'\n\
 category: '${markdown.category}'\n\
 date: '${markdown.date}'\n\
 description: '${markdown.description}'\n\
-cover_image: '${markdown.image.fakePath}'\n\
+cover_image: '${markdown.image}'\n\
 ---\n\
 `
 
