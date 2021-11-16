@@ -1,15 +1,16 @@
 ---
-title: 'Testando post'
-category: 'Anime'
-date: '23 SET 2021'
-description: 'Quem sabe faz ao vivo bicho, brincadeira meu!'
-cover_image: '/images/posts/img1.jpg'
+title: 'Testando post 2'
+category: 'Programação'
+date: '23 SEP 2021'
+description: 'Essa super fera ai bicho, churrasqueira meu!'
+cover_image: '/images/uploads/img2.jpg'
 ---
 
 ## Testando
 
-Lorum ipsum dolor
+Lorum ipsum dolor denovoo
 
 * Test 1
 * Test 2
 * Test 3
+* Test 4
