@@ -1,4 +1,3 @@
-
 import multer from 'multer'
 
 export default async function uploadPostImage(req, res) {
@@ -11,10 +10,11 @@ export default async function uploadPostImage(req, res) {
 
   try {
     upload.single('image')(req, res, err => {
-      const image = {}
-      image.name = req.file.originalname
-      image.type = req.file.mimetype
-      image.url = req.file.path
+      const image = {
+        name: req.file.originalname,
+        type: req.file.mimetype,
+        url: req.file.path
+      }      
 
       res.status(200).json({ data: image })
     })
