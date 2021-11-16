@@ -11,7 +11,7 @@ export default function NewPost() {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     date: moment().format('DD MMM YYYY').toUpperCase(),
-    category: 'programming',
+    category: '',
     image: '',
     title: '',
     description: '',
@@ -20,13 +20,12 @@ export default function NewPost() {
 
   // Image field states
   const [previewImage, setPreviewImage] = useState("")
-  const [typeFile, setTypeFile] = useState("")
   const [isUploaded, setIsUploaded] = useState(false)
+  const [imageFile, setImageFile] = useState("")
 
   // Redirects after form submit
   const router = useRouter()
   useEffect(() => {
-    console.log('formSubmitted', formSubmitted)
     if(formSubmitted) {
       router.push('/')
     }
@@ -35,10 +34,25 @@ export default function NewPost() {
   // Handles
   const handleSubmit = async event => {
     event.preventDefault()
+
+    const promises = []
+
+    const imageFormData = new FormData()
+    imageFormData.append('image', imageFile)
     
     try {
-      const promise = await axios.post('http://localhost:3000/api/create-post-file', formData)
-      promise.status !== 200 || setFormSubmitted(true)
+      const config = { 
+        headers: { 'content-type': 'multipart/form-data' }
+      }
+
+      // image upload
+      const imagePromise = await axios.post('http://localhost:3000/api/upload-post-image', imageFormData, config)
+      const newFormData = { ...formData}
+      newFormData['image'] = `/images/uploads/${imagePromise.data.data.name}`
+
+      const postPromise = await axios.post('http://localhost:3000/api/create-post-file', newFormData)
+
+      setFormSubmitted(true)
     } catch (error) {
       alert(error)
       setFormSubmitted(false)
@@ -50,30 +64,20 @@ export default function NewPost() {
     newFormData[event.target.name] = event.target.value
 
     setFormData(newFormData)
-    console.log(formData)
   }
 
   const handleImagePreview = async event => {
     const inputFile = event.target.files[0]
-    
+
     try {
       const base64 = await convertToBase64(inputFile)
 
       setPreviewImage(base64)
-      setTypeFile(event.target.files[0].type)
       setIsUploaded(true)
     } catch (err) {
       setIsUploaded(false)
     } finally {
-      const newFormData = { ...formData }
-      newFormData[event.target.name] = {
-        fakePath: event.target.value,
-        base64: previewImage,
-        type: typeFile,
-        file: inputFile
-      }
-
-      setFormData(newFormData)
+      setImageFile(inputFile)
     }
   }
 
@@ -86,9 +90,10 @@ export default function NewPost() {
           <div className={styles['image-input']}>
             { isUploaded ? <img src={previewImage} alt="" /> : <h3>Preview</h3>}
             <label htmlFor="file">Image</label>
-            <input 
+            <input
+              name="image"
               onChange={handleImagePreview} 
-              type="file" 
+              type="file"
               name="image"
             />
           </div>
@@ -100,11 +105,16 @@ export default function NewPost() {
 
           <div>
             <label htmlFor="text">Category</label>
-            <select onChange={handleChange} name="category" required>
-              <option value="programming">Programming</option>
-              <option value="animes">Animes</option>
-              <option value="games">Games</option>
-              <option value="books">Books</option>
+            <select onChange={handleChange} name="category" defaultValue="default" required>
+              <option 
+                value="default" 
+                disabled
+                hidden
+              >Choose a Category</option>
+              <option value="Programming">Programming</option>
+              <option value="Animes">Animes</option>
+              <option value="Games">Games</option>
+              <option value="Books">Books</option>
             </select>
           </div>
 

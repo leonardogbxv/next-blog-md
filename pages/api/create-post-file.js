@@ -1,9 +1,6 @@
 import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
 import { normalizeString }  from '../../utils/normalizeString.js'
 import { formatMarkdownMeta } from '../../utils/formatMarkdownMeta.js'
-import moment from 'moment'
 
 export default async function createPostFile(req, res) {
   try {
@@ -11,9 +8,7 @@ export default async function createPostFile(req, res) {
     const postTitle = normalizeString(postData.title)
     const postMarkdown = formatMarkdownMeta(postData)
 
-    console.log(postMarkdown)
-
-    // create dir & write file or just write file inside dir
+    // TODO: create dir & write file or just write file inside dir
     // fs.access(`./posts/${currentDate}`, error => {
     //   if (error) {
     //     fs.mkdir(`./posts/${currentDate}`, { recursive: true })
