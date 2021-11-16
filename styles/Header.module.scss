@@ -49,3 +49,11 @@ $holder-color: #4A4857;
 .subtitle {
   color: $secondary-color;
 }
+
+.new-post {
+  color: $highlight-color;
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
