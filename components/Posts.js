@@ -1,7 +1,6 @@
 import styles from '../styles/Posts.module.scss'
 import Link from 'next/link'
 
-
 export default function Posts({ posts }) {
   return (
     <main className={styles.content}>
