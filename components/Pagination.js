@@ -17,7 +17,7 @@ export default function Pagination({ totalPosts, postsPerPage, currentPage, onCh
           className={styles['icons-pagination']} 
           onClick={() => currentPage == 1 || onChange(currentPage - 1)}
         >
-          <Icon color="action">
+          <Icon color="inherit">
             <ArrowBackIosRoundedIcon />
           </Icon>
         </li>
@@ -36,7 +36,7 @@ export default function Pagination({ totalPosts, postsPerPage, currentPage, onCh
           className={styles['icons-pagination']} 
           onClick={() => currentPage == pages.length || onChange(currentPage + 1)}
         >
-          <Icon color="action">
+          <Icon color="inherit">
             <ArrowForwardIosRoundedIcon />
           </Icon>
         </li>
