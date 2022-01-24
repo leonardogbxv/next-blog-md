@@ -8,7 +8,7 @@ import Pagination from '../components/Pagination'
 
 export default function Home({ posts }) {
   // Pagination
-  const [postsPerPage] = useState(3)
+  const [postsPerPage] = useState(6)
   const [currentPage, setCurrentPage] = useState(1)
 
   const lastPost = currentPage * postsPerPage
