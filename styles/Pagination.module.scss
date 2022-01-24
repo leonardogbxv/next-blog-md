@@ -31,7 +31,7 @@
 }
 
 .icons-pagination {
-  padding: .54rem 1.4rem .54rem 1.4rem;
+  padding: .54rem .9rem .54rem .9rem;
   background-color: #d4d6d8;
   color: #333333AA;
   border-radius: .25rem;
@@ -44,7 +44,8 @@
 }
 
 .current-page {
-  padding: .8rem 1.8rem .8rem 1.8rem;
+  display: flex;
+  padding: .8rem 1.7rem .8rem 1.7rem;
   background-color: #FF4B4B;
   color: #FAF8FF;
   border-radius: .25rem;
