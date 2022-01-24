@@ -4,7 +4,9 @@ $line-color: rgba(0, 0, 0, 0.15);
   // color: #333;
 
   article {
-    cursor: pointer;
+    figure {
+      cursor: pointer;
+    }
 
     h1 {
       margin: 10px 0 6px 0;
@@ -12,6 +14,43 @@ $line-color: rgba(0, 0, 0, 0.15);
 
     p {
       margin: 0 0 10px 0;
+    }
+
+    section {
+      display: flex;
+      justify-content: space-between;
+
+      .edit-icon {
+        display: flex;
+        align-items: center;
+        margin: 10px 0 6px 0;
+        padding: 4px;
+        color: #FAF8FF;
+          background-color: #4bc6ff;
+        border-radius: .25rem;
+
+        &:hover {
+          background-color: #4bc6ffAA;
+          color: #FAF8FFAA;
+          transition: background-color 0.2s ease-out;
+        }
+      }
+      
+      .delete-icon {
+        display: flex;
+        align-items: center;
+        margin: 10px 0 6px 0;
+        padding: 4px;
+        color: #FAF8FF;
+          background-color: #FF4B4B;
+        border-radius: .25rem;
+
+        &:hover {
+          background-color: #FF4B4BAA;
+          color: #FAF8FFAA;
+          transition: background-color 0.2s ease-out;
+        }
+      }
     }
   }
 
