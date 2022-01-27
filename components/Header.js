@@ -24,7 +24,7 @@ export default function Header() {
             <a>Blog</a>
           </Link>
 
-          <a href="https://github.com/leonardogbxv" target="_blank">Github</a>
+          <a href="https://github.com/leonardogbxv" target="_blank" rel="noreferrer">Github</a>
 
           <Link href="/admin/new-post">
             <a className={styles['new-post']}>New Post</a>
