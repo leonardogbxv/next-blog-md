@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <footer className={styles.footer}>
       <p>&copy; {new Date().getFullYear()} Next Blog</p>
-      <p>Developed by <a href="https://github.com/leonardogbxv" target="_blank">leonardogbxv</a></p>
+      <p>Developed by <a href="https://github.com/leonardogbxv" target="_blank" rel="noreferrer">leonardogbxv</a></p>
     </footer>
   )
 }
