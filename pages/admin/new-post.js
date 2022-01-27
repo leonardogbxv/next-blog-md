@@ -35,8 +35,6 @@ export default function NewPost() {
   const handleSubmit = async event => {
     event.preventDefault()
 
-    const promises = []
-
     const imageFormData = new FormData()
     imageFormData.append('image', imageFile)
     
@@ -50,7 +48,7 @@ export default function NewPost() {
       const newFormData = { ...formData}
       newFormData['image'] = `/images/uploads/${imagePromise.data.data.name}`
 
-      const postPromise = await axios.post('http://localhost:3000/api/create-post-file', newFormData)
+      await axios.post('http://localhost:3000/api/create-post-file', newFormData)
 
       setFormSubmitted(true)
     } catch (error) {
@@ -91,7 +89,6 @@ export default function NewPost() {
             { isUploaded ? <img src={previewImage} alt="" /> : <h3>Preview</h3>}
             <label htmlFor="file">Image</label>
             <input
-              name="image"
               onChange={handleImagePreview} 
               type="file"
               name="image"
